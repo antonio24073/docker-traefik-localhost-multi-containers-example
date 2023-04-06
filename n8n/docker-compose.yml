@@ -1,0 +1,52 @@
+version: '3'
+
+services:
+
+
+  n8n:
+    image: n8nio/n8n
+    restart: always
+    environment:
+      - DB_TYPE=mariadb
+      - DB_MYSQLDB_HOST=n8ndb
+      - DB_MYSQLDB_DATABASE=database
+      - DB_MYSQLDB_USER=root
+      - DB_MYSQLDB_PASSWORD=password
+    expose:
+      - 5678
+    links:
+      - n8ndb
+    # volumes:
+    #   - n8n_storage:/home/node/.n8n
+    command: n8n start --tunnel
+    depends_on:
+      - n8ndb
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.n8n.rule=Host(`n8n.local`)"
+      - "traefik.http.services.n8n.loadbalancer.server.port=5678"
+      - "--providers.docker.network=traefiknet"
+    networks:
+      - traefiknet
+      - n8nnet
+  
+  n8ndb:
+    image: mariadb
+    restart: always
+    environment:
+      - MYSQL_DATABASE=database
+      - MYSQL_ROOT_PASSWORD=password
+    # volumes:
+    #   - ./n8n/n8ndb/data:/var/lib/mysql
+    networks:
+      - dbsnet
+      - n8nnet
+
+
+networks:
+  traefiknet:
+    external: true
+  dbsnet:
+    external: true
+  n8nnet:
+    external: true

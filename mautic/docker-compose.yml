@@ -1,0 +1,48 @@
+version: '3'
+
+services:
+
+  mautic:
+    image: mautic/mautic:v4
+    # volumes:
+    #   - ./mautic/html:/var/www/html
+    environment:
+      - MAUTIC_DB_HOST=mauticdb
+      - MAUTIC_DB_USER=root
+      - MAUTIC_DB_PASSWORD=password
+      - MAUTIC_DB_NAME=database
+      - MAUTIC_RUN_CRON_JOBS=false
+    restart: always
+    expose:
+      - 80
+    depends_on:
+      - mauticdb
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.mautic.rule=Host(`mautic.local`)"
+      - "traefik.http.services.mautic.loadbalancer.server.port=80"
+      - "--providers.docker.network=traefiknet"
+    networks:
+      - traefiknet
+      - mauticnet
+  
+  mauticdb:   
+    image: mariadb:latest # not use percona (memory overflow)
+    restart: always
+    environment:
+      - MYSQL_DATABASE=database
+      - MYSQL_ROOT_PASSWORD=password
+    # volumes:
+    #   - ./mautic/mauticdb/data:/var/lib/mysql
+    networks:
+      - dbsnet
+      - mauticnet
+
+
+networks:
+  traefiknet:
+    external: true
+  dbsnet:
+    external: true
+  mauticnet:
+    external: true

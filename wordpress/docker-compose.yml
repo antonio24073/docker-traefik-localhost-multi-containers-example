@@ -1,0 +1,48 @@
+version: '3'
+
+services:
+
+  wordpress:
+    image: wordpress
+    restart: always
+    environment:
+      - WORDPRESS_DB_HOST=wordpressdb
+      - WORDPRESS_DB_USER=root
+      - WORDPRESS_DB_NAME=database
+      - WORDPRESS_DB_PASSWORD=password
+    expose:
+      - 80
+    depends_on:
+      - wordpressdb
+    links:
+      - wordpressdb
+    labels:      
+      - "traefik.enable=true"
+      - "traefik.http.routers.wordpress.rule=Host(`wordpress.local`)"
+      - "traefik.http.services.wordpress.loadbalancer.server.port=80"
+      - "--providers.docker.network=traefiknet"
+    networks:
+      - traefiknet
+      - wordpressnet
+    # volumes:
+    #   - ./wordpress/html:/var/www/html      
+
+  wordpressdb:
+    image: mariadb
+    restart: always
+    environment:
+      - MYSQL_DATABASE=database
+      - MYSQL_ROOT_PASSWORD=password
+    # volumes:
+    #   - ./wordpress/wordpressdb/data:/var/lib/mysql
+    networks:
+      - dbsnet
+      - wordpressnet
+
+networks:
+  traefiknet:
+    external: true
+  dbsnet:
+    external: true
+  wordpressnet:
+    external: true

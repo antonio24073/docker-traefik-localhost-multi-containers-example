@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    expose:
+      - 80
+    environment:
+      - PMA_ARBITRARY=1
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.phpmyadmin.rule=Host(`phpmyadmin.local`)"
+      - "traefik.http.services.phpmyadmin.loadbalancer.server.port=80"
+      - "--providers.docker.network=traefiknet"
+    networks:
+      - traefiknet
+      - dbsnet
+    
+
+networks:
+  dbsnet:
+    external: true
+  traefiknet:
+    external: true

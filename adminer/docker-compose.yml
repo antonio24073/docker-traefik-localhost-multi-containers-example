@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+
+
+  adminer:
+    image: adminer
+    restart: always
+    expose:
+      - 8080
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.adminer.rule=Host(`adminer.local`)"
+      - "traefik.http.services.adminer.loadbalancer.server.port=8080"
+      - "--providers.docker.network=traefiknet"
+    networks:
+      - traefiknet
+      - dbsnet
+    
+
+networks:
+  dbsnet:
+    external: true
+  traefiknet:
+    external: true

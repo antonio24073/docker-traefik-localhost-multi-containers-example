@@ -5,17 +5,12 @@ services:
 
   n8n:
     image: n8nio/n8n
-    restart: always
     environment:
       - DB_TYPE=mariadb
       - DB_MYSQLDB_HOST=n8ndb
       - DB_MYSQLDB_DATABASE=database
       - DB_MYSQLDB_USER=root
       - DB_MYSQLDB_PASSWORD=password
-    expose:
-      - 5678
-    links:
-      - n8ndb
     # volumes:
     #   - n8n_storage:/home/node/.n8n
     command: n8n start --tunnel
@@ -40,7 +35,6 @@ services:
   
   n8ndb:
     image: mariadb
-    restart: always
     environment:
       - MYSQL_DATABASE=database
       - MYSQL_ROOT_PASSWORD=password

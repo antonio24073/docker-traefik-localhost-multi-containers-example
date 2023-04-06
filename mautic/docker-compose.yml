@@ -12,9 +12,6 @@ services:
       - MAUTIC_DB_PASSWORD=password
       - MAUTIC_DB_NAME=database
       - MAUTIC_RUN_CRON_JOBS=false
-    restart: always
-    expose:
-      - 80
     depends_on:
       - mauticdb
     labels:
@@ -36,7 +33,6 @@ services:
   
   mauticdb:   
     image: mariadb:latest # not use percona (memory overflow)
-    restart: always
     environment:
       - MYSQL_DATABASE=database
       - MYSQL_ROOT_PASSWORD=password

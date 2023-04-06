@@ -24,6 +24,16 @@
 - to stop run `sh rm.sh`
 
 
+
+### Local links:
+
+[adminer](http://adminer.local)
+[mautic](http://mautic.local)
+[n8n](http://n8n.local)
+[phpmyadmin](http://phpmyadmin.local)
+[wordpress](http://wordpress.local)
+[whoami](http://whoami.local)
+
 ### Repos:
 
 [adminer](https://hub.docker.com/_/adminer/)
@@ -33,3 +43,4 @@
 [phpmyadmin](https://hub.docker.com/_/phpmyadmin)
 [traefik](https://hub.docker.com/_/traefik)
 [wordpress](https://hub.docker.com/_/wordpress)
+[whoami](https://hub.docker.com/r/containous/whoami)

@@ -1,8 +1,5 @@
 #!/bin/sh
 
-
-
-
 docker stack rm ad
 docker stack rm pa
 

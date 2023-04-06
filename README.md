@@ -7,9 +7,10 @@
 - join a docker swarm
 - run `sh deploy.sh` in the base folder
 - open ports like traefik in you firewall
-- point the domains to your ip
+- point the domains to your ip (get your ip with `ip a` command)
+
 ```
-192.168.0.1	  adminer.local
+192.168.0.1   adminer.local
 192.168.0.1   mautic.local
 192.168.0.1   n8n.local
 192.168.0.1   wordpress.local
@@ -19,6 +20,7 @@
 ```
 
 ### Stop services and networks:
+
 - to stop run `sh rm.sh`
 
 

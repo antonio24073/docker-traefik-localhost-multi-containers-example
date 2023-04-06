@@ -29,6 +29,14 @@ services:
     networks:
       - traefiknet
       - n8nnet
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 2048M
+        # reservations:
+        #   cpus: '0.25'
+        #   memory: 20M  
   
   n8ndb:
     image: mariadb
@@ -41,6 +49,14 @@ services:
     networks:
       - dbsnet
       - n8nnet
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 2048M
+        # reservations:
+        #   cpus: '0.25'
+        #   memory: 20M  
 
 
 networks:

@@ -25,6 +25,14 @@ services:
     networks:
       - traefiknet
       - mauticnet
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 2048M
+        # reservations:
+        #   cpus: '0.25'
+        #   memory: 20M  
   
   mauticdb:   
     image: mariadb:latest # not use percona (memory overflow)
@@ -37,6 +45,14 @@ services:
     networks:
       - dbsnet
       - mauticnet
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 2048M
+        # reservations:
+        #   cpus: '0.25'
+        #   memory: 20M  
 
 
 networks:

@@ -16,6 +16,14 @@ services:
     networks:
       - traefiknet
       - dbsnet
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 2048M
+        # reservations:
+        #   cpus: '0.25'
+        #   memory: 20M  
     
 
 networks:

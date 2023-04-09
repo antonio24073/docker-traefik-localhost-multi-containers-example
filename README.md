@@ -1,4 +1,6 @@
-# Traefik multi containers example
+# Docker Traefik Localhost Multi Containers Example
+
+This is a example project to run multiple containers with auto SSL, auto reverse proxy and Traefik functions in localhost. You can adapt to work in a production server.
 
 ### Steps:
 

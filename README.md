@@ -46,3 +46,13 @@ This is a example project to run multiple containers with auto SSL, auto reverse
 [traefik](https://hub.docker.com/_/traefik)
 [wordpress](https://hub.docker.com/_/wordpress)
 [whoami](https://hub.docker.com/r/containous/whoami)
+
+
+
+------------------------------
+
+# Donations
+
+Help keep projects free:
+
+https://www.paypal.com/donate/?business=X3W3QTHS7BDW4&no_recurring=0&item_name=Help+me+to+continue+the+free+projects&currency_code=BRL

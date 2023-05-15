@@ -2,28 +2,37 @@
 
 This is a example project to run multiple containers with auto SSL, auto reverse proxy and Traefik functions in localhost. You can adapt to work in a production server.
 
-### Steps:
+## Installation:
 
 - install docker
 - install docker compose
 - join a docker swarm
-- run `sh deploy.sh` in the base folder
-- open ports like traefik in you firewall
-- point the domains to your ip (get your ip with `ip a` command)
+
+## Running
+
+Run in the base folder this command to test:
 
 ```
-192.168.0.1   adminer.local
-192.168.0.1   mautic.local
-192.168.0.1   n8n.local
-192.168.0.1   wordpress.local
-192.168.0.1   whoami.local
-192.168.0.1   phpmyadmin.local
-
+make whoami
 ```
 
-### Stop services and networks:
+You can access locally in `whoami.local`.
+To remove your service:
 
-- to stop run `sh rm.sh`
+```
+make rm
+``` 
+
+Or to run all apps:
+
+```
+make up
+``` 
+
+And `make rm` to remove all services.
+
+
+You can control ports in you firewall if you don't you want publish but it works locally and externally in `0.0.0.0` and in your external IP if you points the domain to it.
 
 
 
@@ -53,4 +62,5 @@ This is a example project to run multiple containers with auto SSL, auto reverse
 
 # Donations
 
-Help keep projects free: <a href="https://www.paypal.com/donate/?business=X3W3QTHS7BDW4&no_recurring=0&item_name=Help+me+to+continue+the+free+projects&currency_code=BRL" >Click Here</a>
+- To more advanced features contact me please.
+- Help keep projects free: <a href="https://www.paypal.com/donate/?business=X3W3QTHS7BDW4&no_recurring=0&item_name=Help+me+to+continue+the+free+projects&currency_code=BRL" >Click Here</a>
